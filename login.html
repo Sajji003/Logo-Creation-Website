@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding-top: 60px; /* Adjust for fixed header and navigation */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            background: #444;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 60px; /* Adjust based on header height */
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+            color: #333;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        .btn-google {
+            background: #db4437;
+        }
+
+        .btn-google:hover {
+            background: #c1351d;
+        }
+
+        .btn-email {
+            background: #007bff;
+        }
+
+        .btn-email:hover {
+            background: #0056b3;
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .input-container i {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        form input {
+            padding: 0.75rem 0.75rem 0.75rem 2.5rem; /* Add space for icon */
+            border: 1px solid #ddd;
+            border-radius: 0.25rem;
+            width: 100%;
+        }
+
+        form button {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.25rem;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            background: #007bff;
+        }
+
+        form button:hover {
+            background: #0056b3;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Brandmark</h1>
+    </header>
+
+    <nav>
+        <a href="tools.html">Tools</a>
+        <a href="price.html">Pricing</a>
+        <a href="support.html">Support</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <div class="container">
+        <h1>Login</h1>
+        <button class="btn btn-google">
+            <i class="fab fa-google"></i> Sign in with Google
+        </button>
+        <button class="btn btn-email">
+            <i class="fas fa-envelope"></i> Sign in with Email
+        </button>
+
+        <form id="login-form">
+            <div id="error-message" class="error"></div>
+            <div class="input-container">
+                <i class="fas fa-user"></i>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMessage = document.getElementById('error-message');
+
+            if (username === '' || password === '') {
+                errorMessage.textContent = 'Please fill out both fields.';
+                return;
+            }
+
+            // Additional validation can be added here
+
+            errorMessage.textContent = ''; // Clear error message if validation is successful
+            // Form submission or further processing
+            alert('Login successful!');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .plans {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .plan {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            width: 45%;
+            text-align: center;
+            color: #333;
+        }
+
+        .basic-plan {
+            background-color: #e0f7fa; /* Light blue for Basic Plan */
+        }
+
+        .premium-plan {
+            background-color: #f1f8e9; /* Light green for Premium Plan */
+        }
+
+        .plan h2 {
+            margin: 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .details {
+            margin-top: 20px;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+
+        .details.active {
+            display: block;
+        }
+
+        .details h2 {
+            margin: 0;
+        }
+
+        .details p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .pay-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .pay-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pricing Plans</h1>
+        <div class="plans">
+            <div class="plan basic-plan" id="basic-plan">
+                <h2>Basic Plan</h2>
+                <p>$10/month</p>
+                <button onclick="showDetails('basic')">View Details</button>
+            </div>
+            <div class="plan premium-plan" id="premium-plan">
+                <h2>Premium Plan</h2>
+                <p>$20/month</p>
+                <button onclick="showDetails('premium')">View Details</button>
+            </div>
+        </div>
+        <div id="plan-details" class="details">
+            <!-- Details will be injected here -->
+        </div>
+    </div>
+    <script>
+        function showDetails(plan) {
+            const detailsDiv = document.getElementById('plan-details');
+            let planDetails = '';
+            let paymentPage = 'pay.html'; // Payment page URL
+
+            if (plan === 'basic') {
+                planDetails = `
+                    <h2>Basic Plan Details</h2>
+                    <p>Includes basic features like...</p>
+                    <a href="${paymentPage}?amount=10" class="pay-button">Pay $10</a>
+                `;
+            } else if (plan === 'premium') {
+                planDetails = `
+                    <h2>Premium Plan Details</h2>
+                    <p>Includes advanced features like...</p>
+                    <a href="${paymentPage}?amount=20" class="pay-button">Pay $20</a>
+                `;
+            }
+
+            detailsDiv.innerHTML = planDetails;
+            detailsDiv.classList.add('active');
+        }
+    </script>
+</body>
+</html>

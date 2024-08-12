@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .plans {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .plan {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            width: 45%;
+            text-align: center;
+            color: #333;
+        }
+
+        .basic-plan {
+            background-color: #e0f7fa; /* Light blue for Basic Plan */
+        }
+
+        .premium-plan {
+            background-color: #f1f8e9; /* Light green for Premium Plan */
+        }
+
+        .plan h2 {
+            margin: 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .details {
+            margin-top: 20px;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+
+        .details.active {
+            display: block;
+        }
+
+        .details h2 {
+            margin: 0;
+        }
+
+        .details p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .pay-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .pay-button:hover {
+            background-color: #218838;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .payment-options button {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .payment-options button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pricing Plans</h1>
+        <div class="plans">
+            <div class="plan basic-plan" id="basic-plan">
+                <h2>Basic Plan</h2>
+                <p>$10/month</p>
+                <button onclick="showDetails('basic')">View Details</button>
+            </div>
+            <div class="plan premium-plan" id="premium-plan">
+                <h2>Premium Plan</h2>
+                <p>$20/month</p>
+                <button onclick="showDetails('premium')">View Details</button>
+            </div>
+        </div>
+        <div id="plan-details" class="details">
+            <!-- Details will be injected here -->
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Select Payment Method</h2>
+            <div class="payment-options">
+                <button onclick="payWith('Credit Card')">Pay with Credit Card</button>
+                <button onclick="payWith('Google Pay')">Pay with Google Pay</button>
+                <button onclick="payWith('PhonePe')">Pay with PhonePe</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDetails(plan) {
+            const detailsDiv = document.getElementById('plan-details');
+            let planDetails = '';
+            let textColor = '';
+
+            if (plan === 'basic') {
+                textColor = 'blue';
+                planDetails = `
+                    <h2>Basic Plan Details</h2>
+                    <p style="color: ${textColor};">Includes basic features like...</p>
+                    <button class="pay-button" onclick="openModal()">Pay $10</button>
+                `;
+            } else if (plan === 'premium') {
+                textColor = 'blue';
+                planDetails = `
+                    <h2>Premium Plan Details</h2>
+                    <p style="color: ${textColor};">Includes advanced features like...</p>
+                    <button class="pay-button" onclick="openModal()">Pay $20</button>
+                `;
+            }
+
+            detailsDiv.innerHTML = planDetails;
+            detailsDiv.classList.add('active');
+        }
+
+        function openModal() {
+            document.getElementById('paymentModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function payWith(method) {
+            alert(`You selected ${method}`);
+            closeModal();
+        }
+
+        // Close the modal if the user clicks anywhere outside of it
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('paymentModal')) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

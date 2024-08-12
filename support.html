@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding-top: 60px; /* Adjust for fixed header */
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            background: #444;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 60px; /* Adjust based on header height */
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 1rem; /* Adjust for spacing below navigation */
+        }
+
+        section {
+            background: #fff;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1, h2 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-item h3 {
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #007bff; /* Color for FAQ questions */
+        }
+
+        .faq-item p {
+            display: none;
+            margin-top: 0.5rem;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        form input, form textarea {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 0.25rem;
+        }
+
+        form button {
+            padding: 0.75rem 1.5rem;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Support Center</h1>
+    </header>
+
+    <nav>
+        <a href="tools.html">Tools</a>
+        <a href="price.html">Pricing</a>
+        <a href="support.html">Support</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <main class="container">
+        <section>
+            <h2>Contact Us</h2>
+            <form>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Common Support Topics</h2>
+            <div class="faq-item">
+                <h3 onclick="toggleFAQ(this)">How do I reset my password?</h3>
+                <p>To reset your password, go to the login page and click on the "Forgot Password" link. Follow the instructions to reset your password.</p>
+            </div>
+            <div class="faq-item">
+                <h3 onclick="toggleFAQ(this)">Where can I find my order history?</h3>
+                <p>Your order history can be found in your account dashboard under the "Orders" section.</p>
+            </div>
+            <div class="faq-item">
+                <h3 onclick="toggleFAQ(this)">How can I contact customer support?</h3>
+                <p>You can contact customer support by filling out the contact form above or sending an email to support@example.com.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function toggleFAQ(element) {
+            var faqItem = element.parentNode;
+            faqItem.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Wheel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .color-wheel {
+            width: 300px;
+            height: 300px;
+            background: conic-gradient(
+                red, yellow, green, cyan, blue, magenta, red
+            );
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #555;
+        }
+
+        .section p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Color Wheel and Color Theory</h1>
+        <div class="content">
+            <div class="color-wheel"></div>
+            <div class="section">
+                <h2>Color Combinations</h2>
+                <p>
+                    The color wheel is a visual representation of colors arranged according to their chromatic relationship. It helps to understand and create color combinations based on complementary, analogous, and triadic color schemes.
+                </p>
+                <ul>
+                    <li><strong>Complementary Colors:</strong> Colors located opposite each other on the color wheel. They create high contrast and vibrant looks. For example, red and green.</li>
+                    <li><strong>Analogous Colors:</strong> Colors located next to each other on the color wheel. They create serene and comfortable designs. For example, blue, blue-green, and green.</li>
+                    <li><strong>Triadic Colors:</strong> Colors that are evenly spaced around the color wheel. They provide a balanced and harmonious color scheme. For example, red, yellow, and blue.</li>
+                </ul>
+            </div>
+            <div class="section">
+                <h2>Color Theory</h2>
+                <p>
+                    Color theory explores how colors interact with one another and how they can be used in design to convey different emotions and messages. Key concepts include:
+                </p>
+                <ul>
+                    <li><strong>Primary Colors:</strong> The three primary colors are red, blue, and yellow. They cannot be created by mixing other colors.</li>
+                    <li><strong>Secondary Colors:</strong> These are created by mixing two primary colors. For example, green (blue + yellow), orange (red + yellow), and purple (red + blue).</li>
+                    <li><strong>Tertiary Colors:</strong> These are formed by mixing a primary color with a secondary color. For example, red-orange, yellow-green, and blue-purple.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

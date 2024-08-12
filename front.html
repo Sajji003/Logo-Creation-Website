@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SR LOGO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            overflow: hidden; /* Prevent scroll on the body */
+            background-color: #f5c6cb; /* Light pink background color */
+        }
+
+        header {
+            background: #333; /* Dark background for header */
+            color: #fff; /* White text color */
+            padding: 1rem 0;
+            font-size: 1rem; /* Default font size for header */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for header */
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav h1 {
+            font-size: 2rem; /* Larger font size for the title */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 1rem;
+        }
+
+        nav ul li a {
+            color: #fff; /* White text color for navigation links */
+            text-decoration: none;
+            font-size: 1rem; /* Default font size for navigation links */
+            transition: color 0.3s ease; /* Smooth transition for link color */
+        }
+
+        nav ul li a:hover {
+            color: #f0f0f0; /* Light grey color on hover */
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* Blue gradient background */
+            color: #fff; /* White text color for hero section */
+            padding: 4rem 0;
+            text-align: center;
+            height: 100vh; /* Make hero section full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* Dark overlay for more contrast */
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h2 {
+            font-size: 3rem; /* Larger font size for hero heading */
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem; /* Larger font size for hero paragraph */
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            color: #fff;
+            background: #28a745; /* Green background for buttons */
+            text-decoration: none;
+            border-radius: 0.25rem;
+            font-size: 1rem; /* Default font size for buttons */
+            transition: background 0.3s ease; /* Smooth transition for button background */
+        }
+
+        .btn:hover {
+            background: #218838; /* Darker green on hover */
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        #weather-widget {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        #weather-icon {
+            width: 100px;
+            height: auto;
+        }
+
+        #weather-temp {
+            font-size: 2rem;
+            margin: 0.5rem 0;
+        }
+
+        #weather-description {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Hide other sections initially */
+        .hidden {
+            display: none;
+        }
+
+        /* Show content only when hero section is not active */
+        .main-content {
+            display: none;
+        }
+
+        body.show-main .hero {
+            display: none;
+        }
+
+        body.show-main .main-content {
+            display: block;
+        }
+
+        section {
+            padding: 2rem 0;
+            background-color: #fff; /* White background for sections */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for sections */
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.3s ease; /* Smooth transition for box-shadow */
+        }
+
+        section:hover {
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2); /* Darker shadow on hover */
+        }
+
+        .feature, .pricing-card {
+            background: #f9f9f9; /* Light grey background for feature and pricing cards */
+            padding: 2rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s ease; /* Smooth transition for box-shadow */
+        }
+
+        .feature:hover, .pricing-card:hover {
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2); /* Darker shadow on hover */
+        }
+
+        .pricing-table {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .pricing-card {
+            flex: 1;
+            margin: 0 1rem;
+        }
+
+        .pricing-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem; /* Larger font size for pricing card headings */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        form input, form textarea {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 0.25rem;
+            transition: border-color 0.3s ease; /* Smooth transition for border color */
+        }
+
+        form input:focus, form textarea:focus {
+            border-color: #007bff; /* Blue border on focus */
+            outline: none; /* Remove default focus outline */
+        }
+
+        footer {
+            background: #333; /* Dark background for footer */
+            color: #fff; /* White text color for footer */
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 1rem; /* Default font size for footer */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1>SR LOGO</h1>
+                <ul>
+                    <li><a href="tools.html">Tools</a></li>
+                    <li><a href="price.html">Pricing</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Weather Widget Section -->
+    <section id="weather-widget">
+        <div class="container">
+            <h2>Current Weather</h2>
+            <div id="weather">
+                <img id="C:\Users\SAJINI\OneDrive\Desktop\weth.png" src="" alt="Weather Icon">
+                <p id="weather-temp"></p>
+                <p id="weather-description"></p>
+            </div>
+        </div>
+    </section>
+
+    <main class="hero">
+        <div class="container">
+            <h2>Design Your Brand Identity</h2>
+            <p>Create a logo that represents your brand with our advanced AI-powered tool.</p>
+            <a href="create.html" class="btn" onclick="showMainContent()">Create Logo</a>
+        </div>
+    </main>
+
+    <div class="main-content">
+        <section id="features">
+            <div class="container">
+                <h2>Features</h2>
+                <div class="feature">
+                    <h3>AI-Powered Design</h3>
+                    <p>Generate unique logos using our advanced AI technology.</p>
+                </div>
+                <div class="feature">
+                    <h3>Customizable Templates</h3>
+                    <p>Choose from a variety of templates and customize them to fit your brand.</p>
+                </div>
+                <div class="feature">
+                    <h3>Instant Download</h3>
+                    <p>Download your logo instantly in various formats.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing">
+            <div class="container">
+                <h2>Pricing</h2>
+                <div class="pricing-table">
+                    <div class="pricing-card">
+                        <h3>Basic Plan</h3>
+                        <p>$19.99</p>
+                        <ul>
+                            <li>1 Logo</li>
+                            <li>Standard Templates</li>
+                            <li>Email Support</li>
+                        </ul>
+                        <a href="buy.html" class="btn">Buy Now</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Pro Plan</h3>
+                        <p>$49.99</p>
+                        <ul>
+                            <li>5 Logos</li>
+                            <li>Premium Templates</li>
+                            <li>Priority Support</li>
+                        </ul>
+                        <a href="buy.html" class="btn">Buy Now</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Enterprise Plan</h3>
+                        <p>$99.99</p>
+                        <ul>
+                            <li>Unlimited Logos</li>
+                            <li>Custom Templates</li>
+                            <li>24/7 Support</li>
+                        </ul>
+                        <a href="buy.html" class="btn">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <form>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 SR LOGO. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const API_KEY = 'YOUR_API_KEY'; // Replace with your API key
+        const LOCATION = 'Bengaluru'; // Adjust latitude and longitude as needed
+        const API_URL = `https://api.meteomatics.com/nowcast?lat=12.9716&lon=77.5946&apikey=${API_KEY}&format=json`;
+
+        async function fetchWeather() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                const weather = data.weather.current;
+                const iconUrl = `https://www.meteomatics.com/icons/${weather.icon}.png`; // Example URL, adjust based on actual API response
+                const temperature = weather.temp;
+                const description = weather.description;
+
+                document.getElementById('weather-icon').src = iconUrl;
+                document.getElementById('weather-temp').textContent = `${temperature} °C`;
+                document.getElementById('weather-description').textContent = description;
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
+        }
+
+        function showMainContent() {
+            document.body.classList.add('show-main');
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchWeather);
+    </script>
+</body>
+</html>

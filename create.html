@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Logo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5c6cb; /* Light pink background */
+            color: #ff66b2; /* Pink text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #333; /* Dark header background */
+            color: #fff; /* White text */
+            padding: 1rem;
+            width: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        header .download-btn {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #ff66b2; /* Pink background for button */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        header .download-btn:hover {
+            background-color: #e55b9d; /* Darker pink on hover */
+        }
+
+        .container {
+            max-width: 900px;
+            width: 90%;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff; /* White background for container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .templates-container {
+            max-height: 300px; /* Set max height for scrollable area */
+            overflow-y: auto; /* Enable vertical scrolling */
+            margin-bottom: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .templates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .template {
+            background-color: #f9f9f9; /* Light grey background */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            width: 150px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .template img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .template:hover {
+            background-color: #f0f0f0; /* Light grey background on hover */
+        }
+
+        .template.active {
+            border-color: #ff66b2; /* Pink border for selected items */
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="number"], input[type="color"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #ff66b2; /* Pink background for button */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e55b9d; /* Darker pink on hover */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .logo-preview {
+            text-align: center;
+        }
+
+        .logo-preview img {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .notification {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background-color: #d4edda; /* Light green background for success message */
+            color: #155724; /* Dark green text for success message */
+            border: 1px solid #c3e6cb; /* Green border for success message */
+            border-radius: 4px;
+            display: none; /* Hidden by default */
+        }
+
+        .notification.error {
+            background-color: #f8d7da; /* Light red background for error message */
+            color: #721c24; /* Dark red text for error message */
+            border: 1px solid #f5c6cb; /* Red border for error message */
+        }
+
+        .edit-container {
+            display: none;
+        }
+
+        .edit-container.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <span id="header-title">Logo Creation</span>
+        <button class="download-btn hidden" id="download-btn" onclick="downloadLogo()">Download Logo</button>
+    </header>
+
+    <div class="container" id="creation-form">
+        <h2>Select a Template</h2>
+        <div class="templates-container">
+            <div class="templates">
+                <!-- Template placeholders; replace with actual template images -->
+                <div class="template" data-template="1">
+                    <img src="https://via.placeholder.com/100?text=Template+1" alt="Template 1">
+                    <p>Template 1</p>
+                </div>
+                <div class="template" data-template="2">
+                    <img src="https://via.placeholder.com/100?text=Template+2" alt="Template 2">
+                    <p>Template 2</p>
+                </div>
+                <div class="template" data-template="3">
+                    <img src="https://via.placeholder.com/100?text=Template+3" alt="Template 3">
+                    <p>Template 3</p>
+                </div>
+                <div class="template" data-template="4">
+                    <img src="https://via.placeholder.com/100?text=Template+4" alt="Template 4">
+                    <p>Template 4</p>
+                </div>
+                <div class="template" data-template="5">
+                    <img src="https://via.placeholder.com/100?text=Template+5" alt="Template 5">
+                    <p>Template 5</p>
+                </div>
+                <div class="template" data-template="6">
+                    <img src="https://via.placeholder.com/100?text=Template+6" alt="Template 6">
+                    <p>Template 6</p>
+                </div>
+                <div class="template" data-template="7">
+                    <img src="https://via.placeholder.com/100?text=Template+7" alt="Template 7">
+                    <p>Template 7</p>
+                </div>
+                <div class="template" data-template="8">
+                    <img src="https://via.placeholder.com/100?text=Template+8" alt="Template 8">
+                    <p>Template 8</p>
+                </div>
+                <div class="template" data-template="9">
+                    <img src="https://via.placeholder.com/100?text=Template+9" alt="Template 9">
+                    <p>Template 9</p>
+                </div>
+                <div class="template" data-template="10">
+                    <img src="https://via.placeholder.com/100?text=Template+10" alt="Template 10">
+                    <p>Template 10</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Customize Your Logo</h2>
+        <div class="form-group">
+            <label for="logo-text">Logo Text</label>
+            <input type="text" id="logo-text" placeholder="Enter your logo text">
+        </div>
+        <div class="form-group">
+            <label for="logo-size">Logo Size</label>
+            <input type="number" id="logo-size" placeholder="Enter logo size" min="100" max="500">
+        </div>
+        <button class="btn" onclick="generateLogo()">Generate Logo</button>
+    </div>
+
+    <div class="edit-container" id="edit-container">
+        <div class="container">
+            <h2>Edit Your Logo</h2>
+            <div class="logo-preview">
+                <!-- Logo preview will be displayed here -->
+                <img id="logo-preview-img" src="" alt="Logo Preview">
+                <p id="logo-preview-text"></p>
+            </div>
+            <div class="form-group">
+                <label for="edit-logo-text">Edit Logo Text</label>
+                <input type="text" id="edit-logo-text">
+            </div>
+            <div class="form-group">
+                <label for="edit-logo-color">Edit Logo Color</label>
+                <input type="color" id="edit-logo-color">
+            </div>
+            <button class="btn" onclick="updateLogo()">Update Logo</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedTemplate = null;
+
+        document.querySelectorAll('.template').forEach(template => {
+            template.addEventListener('click', function() {
+                document.querySelectorAll('.template').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                selectedTemplate = this.dataset.template;
+            });
+        });
+
+        function generateLogo() {
+            const logoText = document.getElementById('logo-text').value;
+            const logoSize = document.getElementById('logo-size').value;
+
+            if (!selectedTemplate) {
+                showNotification('error', 'Please select a template.');
+                return;
+            }
+
+            if (!logoText || !logoSize) {
+                showNotification('error', 'Please enter logo text and size.');
+                return;
+            }
+
+            document.getElementById('creation-form').classList.add('hidden');
+            document.getElementById('edit-container').classList.add('active');
+
+            const previewImg = document.getElementById('logo-preview-img');
+            const previewText = document.getElementById('logo-preview-text');
+
+            previewImg.src = `https://via.placeholder.com/${logoSize}?text=${encodeURIComponent(logoText)}`;
+            previewText.textContent = logoText;
+            document.getElementById('download-btn').classList.remove('hidden'); // Show download button
+        }
+
+        function updateLogo() {
+            const newText = document.getElementById('edit-logo-text').value;
+            const newColor = document.getElementById('edit-logo-color').value;
+
+            if (!newText || !newColor) {
+                showNotification('error', 'Please enter logo text and select a color.');
+                return;
+            }
+
+            document.getElementById('logo-preview-text').textContent = newText;
+            document.getElementById('logo-preview-img').style.backgroundColor = newColor;
+            showNotification('success', 'Logo updated successfully!');
+        }
+
+        function downloadLogo() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            const img = document.getElementById('logo-preview-img');
+            const text = document.getElementById('logo-preview-text').textContent;
+
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            context.fillStyle = img.style.backgroundColor;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            context.font = '30px Arial';
+            context.fillStyle = '#fff';
+            context.textAlign = 'center';
+            context.fillText(text, canvas.width / 2, canvas.height / 2);
+
+            const link = document.createElement('a');
+            link.download = 'logo.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function showNotification(type, message) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
